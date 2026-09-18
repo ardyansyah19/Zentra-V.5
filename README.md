@@ -11,21 +11,6 @@ zentra-ecommerce/
 └── flutter_app/       Flutter — aplikasi customer (mobile, iOS & Android)
 ```
 
-## Urutan Menjalankan
-
-1. **Backend** (wajib jalan duluan) — lihat `backend/README.md`
-   ```bash
-   cd backend && npm install && cp .env.example .env && npm start
-   ```
-2. **Admin Dashboard** — lihat `admin-dashboard/README.md`
-   ```bash
-   cd admin-dashboard && npm install && cp .env.example .env && npm run dev
-   ```
-3. **Aplikasi Flutter** — lihat `flutter_app/README.md` (perlu Flutter SDK terpasang)
-   ```bash
-   cd flutter_app && flutter pub get && flutter run
-   ```
-
 ## Bagaimana Sinkronisasi Bekerja
 
 Admin Dashboard dan Aplikasi Flutter sama-sama terhubung ke satu backend
@@ -55,25 +40,6 @@ stok, atau status pesanan lewat dashboard:
 - **Backend:** Node.js, Express, better-sqlite3, Socket.io, JWT, bcrypt
 - **Admin Dashboard:** React 19, Vite, Tailwind CSS, Recharts, socket.io-client, React Router
 - **Aplikasi Mobile:** Flutter/Dart, Provider, socket_io_client, cached_network_image, google_fonts
-
-## Changelog — V4
-
-**Bug diperbaiki:**
-- **Kritis — inkonsistensi mata uang:** aplikasi Flutter menampilkan seluruh harga dengan simbol Dolar (`$`) sementara Admin Dashboard menampilkan Rupiah (`Rp`) dari angka mentah yang sama, sehingga harga di aplikasi mobile terlihat tidak masuk akal (mis. hoodie "$45" yang seharusnya sekitar Rp300 ribuan). Sekarang seluruh aplikasi — kartu produk, detail produk, keranjang, checkout, riwayat pesanan — memakai formatter Rupiah terpusat yang konsisten dengan Admin Dashboard, dan data seed produk sudah disesuaikan ke harga Rupiah yang realistis.
-- Ongkos kirim di aplikasi mobile disesuaikan ke nilai Rupiah yang wajar (sebelumnya bernilai `10`, sisa dari asumsi Dolar).
-- File `.env.example` yang hilang di `backend/` dan `admin-dashboard/` (padahal instruksi menjalankan menyuruh meng-copy file ini) kini sudah tersedia.
-- Script `npm run seed` di backend sebelumnya rusak (memanggil file `seed.js` yang tidak ada) — sekarang benar-benar berfungsi untuk mereset database ke data awal.
-- Beberapa label UI berbahasa Inggris yang tercampur di antara teks Bahasa Indonesia (mis. "My Account", "Log Out", "Home", "Featured Items") kini konsisten berbahasa Indonesia.
-- Bug tampilan: avatar pengguna kosong (`NetworkImage('')`) di halaman Beranda kini punya fallback inisial nama, sama seperti di halaman Akun.
-- Admin Dashboard sebelumnya diam-diam gagal tanpa pemberitahuan saat request API error (mis. backend mati) — sekarang menampilkan notifikasi toast error yang jelas di semua halaman.
-
-**Peningkatan tampilan & pengalaman:**
-- Admin Dashboard: skeleton loading halus menggantikan teks "Memuat data..." di semua halaman (Dashboard, Produk, Pesanan, Pelanggan), preview thumbnail gambar & indikator saat menyimpan di form produk, badge versi di sidebar.
-- Aplikasi Flutter: skeleton loading bergaya shimmer untuk grid produk (memanfaatkan paket `shimmer` yang sebelumnya sudah terpasang namun belum pernah dipakai).
-
-**Beres-beres teknis:**
-- Menghapus dependency `multer` dari backend — tidak pernah dipakai di kode manapun dan punya kerentanan keamanan yang diketahui pada versi 1.x.
-- Menghapus dependency `flutter_svg` dari aplikasi mobile — tidak pernah diimpor/dipakai di kode manapun.
 
 ## Changelog — V3 (sebelumnya)
 
