@@ -32,5 +32,5 @@ stok, atau status pesanan lewat dashboard:
 - Keranjang, checkout, riwayat & status pesanan
 - Favorit/wishlist, pencarian & filter kategori, rating & ulasan
 - Dashboard admin dengan grafik penjualan, status pesanan, & peringatan stok menipis
-- Mode gelap/terang di aplikasi mobile
+- Mode gelap / terang di aplikasi mobile
 - Desain khas (oranye/navy) yang konsisten di web & mobile
